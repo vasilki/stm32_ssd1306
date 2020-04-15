@@ -6,13 +6,13 @@
 #include "timers.h"
 #include "uart.h"
 #include "dwt_stm32_delay.h"
-#include "PF_Config.h"
-#include "LIB_Config.h"
+#include "ssd1306.h"
+#include "ssd1306_tests.h"
 
 extern UART_HandleTypeDef huart1; /*declared in main.c*/
 //extern ADC_HandleTypeDef hadc1; /*declared in main.c*/
 extern TIM_HandleTypeDef htim9;
-extern SPI_HandleTypeDef hspi1;
+
 
 
 static void main_Init(void);
@@ -83,9 +83,9 @@ void main_Init(void)
     uart_Init(&huart1);
     uart_PrintfBuildVersion(&huart1);
     
-    /*TFT2.8 init*/
-    system_init(&hspi1);
-
+    /*OLED SSD1306 init*/
+    //ssd1306_Init();
+    ssd1306_TestAll();
 
     loc_B_IsFirstTime = 1;
   }
@@ -137,16 +137,6 @@ void main_heartbeat(void)
 
 void main_draw(void)
 {
-
-  lcd_draw_rect(1, 1, 50, 50, RED);
-
-  lcd_draw_rect(30, 40, 150, 100, RED);
-  lcd_draw_circle(120, 160, 50, BLUE);
-  lcd_draw_line(30, 40, 180, 140, RED);
-
-  lcd_draw_line(30, 220, 210, 240, RED);
-  lcd_draw_line(30, 220, 120, 280, RED);
-  lcd_draw_line(120, 280, 210, 240, RED);
 
 
   return;

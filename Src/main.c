@@ -69,7 +69,7 @@ static void MX_USART1_UART_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-uint8_t GL_PROJECT_NAME[]="PROJECT OF EXPERIMENTS WITH ShareWave TFT 2.8 #1\r\n";
+uint8_t GL_PROJECT_NAME[]="PROJECT OF EXPERIMENTS WITH OLED SSD1306 #1\r\n";
 /* USER CODE END 0 */
 
 /**
@@ -187,12 +187,12 @@ static void MX_SPI1_Init(void)
   /* SPI1 parameter configuration*/
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
-  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi1.Init.Direction = SPI_DIRECTION_1LINE;
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
-  hspi1.Init.CLKPhase = SPI_PHASE_2EDGE;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -294,15 +294,15 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : LCD_DC_Pin */
   GPIO_InitStruct.Pin = LCD_DC_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LCD_DC_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LCD_CS_Pin */
   GPIO_InitStruct.Pin = LCD_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LCD_CS_GPIO_Port, &GPIO_InitStruct);
 
 }

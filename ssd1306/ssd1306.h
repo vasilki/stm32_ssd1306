@@ -19,6 +19,7 @@ _BEGIN_STD_C
 #include "stm32f1xx_hal.h"
 #elif defined(STM32F4)
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_gpio.h"
 #elif defined(STM32L0)
 #include "stm32l0xx_hal.h"
 #elif defined(STM32L4)
@@ -48,30 +49,29 @@ _BEGIN_STD_C
 /* ^^^ I2C config ^^^ */
 
 /* vvv SPI config vvv */
-
 #ifndef SSD1306_SPI_PORT
-#define SSD1306_SPI_PORT        hspi2
+#define SSD1306_SPI_PORT        hspi1
 #endif
 
 #ifndef SSD1306_CS_Port
-#define SSD1306_CS_Port         GPIOB
+#define SSD1306_CS_Port         LCD_CS_GPIO_Port
 #endif
 #ifndef SSD1306_CS_Pin
-#define SSD1306_CS_Pin          GPIO_PIN_12
+#define SSD1306_CS_Pin          LCD_CS_Pin
 #endif
 
 #ifndef SSD1306_DC_Port
-#define SSD1306_DC_Port         GPIOB
+#define SSD1306_DC_Port         LCD_DC_GPIO_Port
 #endif
 #ifndef SSD1306_DC_Pin
-#define SSD1306_DC_Pin          GPIO_PIN_14
+#define SSD1306_DC_Pin          LCD_DC_Pin
 #endif
 
 #ifndef SSD1306_Reset_Port
-#define SSD1306_Reset_Port      GPIOA
+#define SSD1306_Reset_Port      GPIOA /*not used*/
 #endif
 #ifndef SSD1306_Reset_Pin
-#define SSD1306_Reset_Pin       GPIO_PIN_8
+#define SSD1306_Reset_Pin       GPIO_PIN_8 /*not used*/
 #endif
 
 /* ^^^ SPI config ^^^ */
