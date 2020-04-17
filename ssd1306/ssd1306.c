@@ -31,9 +31,10 @@ void ssd1306_Reset(void) {
 
 // Send a byte to the command register
 void ssd1306_WriteCommand(uint8_t byte) {
+  static uint32_t loc_status = 0xCAFECAFE;
     HAL_GPIO_WritePin(SSD1306_CS_Port, SSD1306_CS_Pin, GPIO_PIN_RESET); // select OLED
     HAL_GPIO_WritePin(SSD1306_DC_Port, SSD1306_DC_Pin, GPIO_PIN_RESET); // command
-    HAL_SPI_Transmit(&SSD1306_SPI_PORT, (uint8_t *) &byte, 1, HAL_MAX_DELAY);
+    loc_status = (uint32_t)HAL_SPI_Transmit(&SSD1306_SPI_PORT, (uint8_t *) &byte, 1, HAL_MAX_DELAY);
     HAL_GPIO_WritePin(SSD1306_CS_Port, SSD1306_CS_Pin, GPIO_PIN_SET); // un-select OLED
 }
 
@@ -59,8 +60,9 @@ static SSD1306_t SSD1306;
 // Initialize the oled screen
 void ssd1306_Init(void) {
 	// Reset OLED
+  HAL_GPIO_WritePin(TEST_PIN_GPIO_Port_, TEST_PIN_Pin_, GPIO_PIN_SET);
 	ssd1306_Reset();
-
+	HAL_GPIO_WritePin(TEST_PIN_GPIO_Port_, TEST_PIN_Pin_, GPIO_PIN_RESET);
     // Wait for the screen to boot
     HAL_Delay(100);
     

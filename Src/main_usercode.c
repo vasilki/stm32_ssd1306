@@ -84,8 +84,8 @@ void main_Init(void)
     uart_PrintfBuildVersion(&huart1);
     
     /*OLED SSD1306 init*/
-    //ssd1306_Init();
-    ssd1306_TestAll();
+    ssd1306_Init();
+    //ssd1306_TestAll();
 
     loc_B_IsFirstTime = 1;
   }
