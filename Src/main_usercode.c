@@ -85,7 +85,7 @@ void main_Init(void)
     
     /*OLED SSD1306 init*/
     //ssd1306_Init();
-   // ssd1306_TestAll();
+    ssd1306_TestAll();
  
     loc_B_IsFirstTime = 1;
   }
@@ -108,7 +108,7 @@ void main_heartbeat(void)
   
   if(loc_prev_time_sec != loc_time_sec)
   {
-   // UART_PRINTFINTEGER(loc_time_sec,"DEC")
+    UART_PRINTFINTEGER(loc_time_sec,"DEC")
 
 
       
