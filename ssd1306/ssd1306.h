@@ -74,13 +74,6 @@ _BEGIN_STD_C
 #define SSD1306_Reset_Pin       LCD_BL_Pin
 #endif
 
-#ifndef TEST_PIN_GPIO_Port_
-#define TEST_PIN_GPIO_Port_      TEST_PIN_GPIO_Port /*not used*/
-#endif
-#ifndef TEST_PIN_Pin_
-#define TEST_PIN_Pin_       TEST_PIN_Pin /*not used*/
-#endif
-
 /* ^^^ SPI config ^^^ */
 
 #if defined(SSD1306_USE_I2C)

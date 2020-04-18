@@ -59,15 +59,14 @@ static SSD1306_t SSD1306;
 // Initialize the oled screen
 void ssd1306_Init(void) {
 	// Reset OLED
-  HAL_GPIO_WritePin(TEST_PIN_GPIO_Port_, TEST_PIN_Pin_, GPIO_PIN_SET);
 	ssd1306_Reset();
 
     // Wait for the screen to boot
-    HAL_Delay(1000);
+    HAL_Delay(100);
     
     // Init OLED
     ssd1306_WriteCommand(0xAE); //display off
-HAL_GPIO_WritePin(TEST_PIN_GPIO_Port_, TEST_PIN_Pin_, GPIO_PIN_RESET);
+
     ssd1306_WriteCommand(0x20); //Set Memory Addressing Mode   
     ssd1306_WriteCommand(0x00); // 00b,Horizontal Addressing Mode; 01b,Vertical Addressing Mode;
                                 // 10b,Page Addressing Mode (RESET); 11b,Invalid
