@@ -59,7 +59,7 @@ static SSD1306_t SSD1306;
 // Initialize the oled screen
 void ssd1306_Init(void) {
 	// Reset OLED
-	ssd1306_Reset();
+	  ssd1306_Reset();
 
     // Wait for the screen to boot
     HAL_Delay(100);
