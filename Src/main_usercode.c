@@ -84,8 +84,8 @@ void main_Init(void)
     uart_PrintfBuildVersion(&huart1);
     
     /*OLED SSD1306 init*/
-    //ssd1306_Init();
-    ssd1306_TestAll();
+    ssd1306_Init();
+    //ssd1306_TestAll();
  
     loc_B_IsFirstTime = 1;
   }
@@ -137,7 +137,17 @@ void main_heartbeat(void)
 
 void main_draw(void)
 {
+  uint32_t loc_time;
+  char loc_buff[8];
+  loc_time = tim_GetTimeFromStartSEC();
+  snprintf(loc_buff,sizeof(loc_buff),"%04d",(int)loc_time);
 
+  ssd1306_SetCursor(2, 0);
+  ssd1306_WriteString("HELLO WORLD!", Font_11x18, White);
+  ssd1306_SetCursor(2, 26);
+  ssd1306_WriteString(loc_buff, Font_11x18, White);
+  ssd1306_Line(0, 0, 100, 100, White);
+  ssd1306_UpdateScreen();
 
   return;
 }
