@@ -270,32 +270,68 @@ void ssd1306_SetCursor(uint8_t x, uint8_t y) {
     SSD1306.CurrentY = y;
 }
 
-
+// Draw line
 void ssd1306_Line(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, SSD1306_COLOR color) {
-    const int deltaX = abs(x2 - x1);
-    const int deltaY = abs(y2 - y1);
-    const int signX = x1 < x2 ? 1 : -1;
-    const int signY = y1 < y2 ? 1 : -1;
-    //
-    int error = deltaX - deltaY;
-    //
-    ssd1306_DrawPixel(x2, y2,color);
-    while(x1 != x2 || y1 != y2)
-   {
-      ssd1306_DrawPixel(x1, y1,color);
-        const int error2 = error * 2;
+    int32_t deltaX = abs(x2 - x1);
+    int32_t deltaY = abs(y2 - y1);
+    int32_t signX = ((x1 < x2) ? 1 : -1);
+    int32_t signY = ((y1 < y2) ? 1 : -1);
+    int32_t error = deltaX - deltaY;
+    int32_t error2;
+	
+    ssd1306_DrawPixel(x2, y2, color);
+	while((x1 != x2) || (y1 != y2))
+	{
+        ssd1306_DrawPixel(x1, y1, color);
+        error2 = error * 2;
         //
         if(error2 > -deltaY)
         {
             error -= deltaY;
             x1 += signX;
         }
+        else
+        {
+			/*nothing to do*/
+        }
+		
         if(error2 < deltaX)
         {
             error += deltaX;
             y1 += signY;
         }
+        else
+        {
+			/*nothing to do*/
+        }
     }
 
     return;
 }
+
+void ssd1306_DrawArc(uint8_t x, uint8_t y, uint8_t radius, uint16_t sweep, SSD1306_COLOR color)
+{
+	float approx = 3.14/32;
+	uint8_t xp1,xp2;
+	uint8_t yp1,yp2;
+	float count = 0;
+	float loc_sweep = (((sweep <= 360) ? sweep : (sweep % 360)))*180/3.14;
+	
+	while(loc_sweep > count)
+	{
+		xp1 = x + (uint8_t)(sin(count)*radius);
+		yp1 = y + (uint8_t)(cos(count)*radius);	
+		count = count + approx;
+		xp2 = x + (uint8_t)(sin(count)*radius);
+		yp2 = y + (uint8_t)(cos(count)*radius);	
+		ssd1306_Line(xp1,yp1,xp2,yp2,color);
+		count = count + approx;
+	}
+	
+	
+	return;
+}
+
+
+
+

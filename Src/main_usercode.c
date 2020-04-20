@@ -146,7 +146,9 @@ void main_draw(void)
   ssd1306_WriteString("HELLO WORLD!", Font_11x18, White);
   ssd1306_SetCursor(2, 26);
   ssd1306_WriteString(loc_buff, Font_11x18, White);
-  ssd1306_Line(0, 0, 100, 100, White);
+  ssd1306_Line(30, 30, 100, 30, White);
+  ssd1306_DrawArc(30,30,29,270,White);
+  
   ssd1306_UpdateScreen();
 
   return;
