@@ -1,4 +1,5 @@
 #include "ssd1306.h"
+#include <math.h>
 
 #if defined(SSD1306_USE_I2C)
 
@@ -309,25 +310,53 @@ void ssd1306_Line(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, SSD1306_COLOR 
     return;
 }
 
+static float ssd1306_DegToRad(float par_deg)
+{
+	return par_deg * 3.14 / 180.0;
+}
+
 void ssd1306_DrawArc(uint8_t x, uint8_t y, uint8_t radius, uint16_t sweep, SSD1306_COLOR color)
 {
-	float approx = 3.14/32;
+	#define CIRCLE_APPROXIMATION_SEGMENTS 36
+	float approx_degree;
+	uint32_t approx_segments;
 	uint8_t xp1,xp2;
 	uint8_t yp1,yp2;
-	float count = 0;
-	float loc_sweep = (((sweep <= 360) ? sweep : (sweep % 360)))*180/3.14;
+	uint32_t count = 0;
+	uint32_t loc_sweep = 0;
+	float rad;
 	
-	while(loc_sweep > count)
+	if(sweep <= 360)
 	{
-		xp1 = x + (uint8_t)(sin(count)*radius);
-		yp1 = y + (uint8_t)(cos(count)*radius);	
-		count = count + approx;
-		xp2 = x + (uint8_t)(sin(count)*radius);
-		yp2 = y + (uint8_t)(cos(count)*radius);	
-		ssd1306_Line(xp1,yp1,xp2,yp2,color);
-		count = count + approx;
+		loc_sweep = sweep;
+	}
+	else
+	{
+		loc_sweep = sweep % 360;
+		loc_sweep = ((loc_sweep != 0)?loc_sweep:360);
 	}
 	
+	approx_segments = (loc_sweep * CIRCLE_APPROXIMATION_SEGMENTS) / 360;
+	approx_degree = loc_sweep / (float)approx_segments;
+
+	while(count < approx_segments)
+	{
+		rad = ssd1306_DegToRad(count*approx_degree);
+		xp1 = x + (uint8_t)(sin(rad)*radius);
+		yp1 = y + (uint8_t)(cos(rad)*radius);	
+		count++;
+		if(count != approx_segments)
+		{
+			rad = ssd1306_DegToRad(count*approx_degree);
+		}
+		else
+		{			
+			rad = ssd1306_DegToRad(loc_sweep);
+		}
+		xp2 = x + (uint8_t)(sin(rad)*radius);
+		yp2 = y + (uint8_t)(cos(rad)*radius);	
+		ssd1306_Line(xp1,yp1,xp2,yp2,color);
+	}
 	
 	return;
 }
