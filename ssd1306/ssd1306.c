@@ -342,6 +342,72 @@ void ssd1306_DrawArc(uint8_t x, uint8_t y, uint8_t radius, uint16_t sweep, SSD13
 	while(count < approx_segments)
 	{
 		rad = ssd1306_DegToRad(count*approx_degree);
+		xp1 = x + (int8_t)(sin(rad)*radius);
+		yp1 = y + (int8_t)(cos(rad)*radius);	
+		count++;
+		if(count != approx_segments)
+		{
+			rad = ssd1306_DegToRad(count*approx_degree);
+		}
+		else
+		{			
+			rad = ssd1306_DegToRad(loc_sweep);
+		}
+		xp2 = x + (int8_t)(sin(rad)*radius);
+		yp2 = y + (int8_t)(cos(rad)*radius);	
+		ssd1306_Line(xp1,yp1,xp2,yp2,color);
+	}
+	
+	return;
+}
+
+/*
+// R - радиус, X1, Y1 - координаты центра
+   int x := 0
+   int y := R
+   int delta := 1 - 2 * R
+   int error := 0
+   while (y >= 0)
+       drawpixel(X1 + x, Y1 + y)
+       drawpixel(X1 + x, Y1 - y)
+       drawpixel(X1 - x, Y1 + y)
+       drawpixel(X1 - x, Y1 - y)
+       error = 2 * (delta + y) - 1
+       if ((delta < 0) && (error <= 0))
+           delta += 2 * ++x + 1
+           continue
+       if ((delta > 0) && (error > 0))
+           delta -= 2 * --y + 1
+           continue
+       delta += 2 * (++x - y--)
+
+void ssd1306_DrawCircle(uint8_t x, uint8_t y, uint8_t radius, SSD1306_COLOR color)
+{
+	#define CIRCLE_APPROXIMATION_SEGMENTS 36
+	float approx_degree;
+	uint32_t approx_segments;
+	uint8_t xp1,xp2;
+	uint8_t yp1,yp2;
+	uint32_t count = 0;
+	uint32_t loc_sweep = 0;
+	float rad;
+	
+	if(sweep <= 360)
+	{
+		loc_sweep = sweep;
+	}
+	else
+	{
+		loc_sweep = sweep % 360;
+		loc_sweep = ((loc_sweep != 0)?loc_sweep:360);
+	}
+	
+	approx_segments = (loc_sweep * CIRCLE_APPROXIMATION_SEGMENTS) / 360;
+	approx_degree = loc_sweep / (float)approx_segments;
+
+	while(count < approx_segments)
+	{
+		rad = ssd1306_DegToRad(count*approx_degree);
 		xp1 = x + (uint8_t)(sin(rad)*radius);
 		yp1 = y + (uint8_t)(cos(rad)*radius);	
 		count++;
@@ -360,7 +426,6 @@ void ssd1306_DrawArc(uint8_t x, uint8_t y, uint8_t radius, uint16_t sweep, SSD13
 	
 	return;
 }
-
-
+*/
 
 

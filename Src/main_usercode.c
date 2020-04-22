@@ -8,7 +8,6 @@
 #include "dwt_stm32_delay.h"
 #include "ssd1306.h"
 #include "ssd1306_tests.h"
-#include <math.h>
 
 extern UART_HandleTypeDef huart1; /*declared in main.c*/
 //extern ADC_HandleTypeDef hadc1; /*declared in main.c*/
@@ -109,10 +108,8 @@ void main_heartbeat(void)
   
   if(loc_prev_time_sec != loc_time_sec)
   {
-    char loc_buff[100];
-    UART_PRINTFINTEGER(cos(180 * 3.14 / 180.0),"DEC")
-      //sprintf(loc_buff,"%f\n",cos(3.14));
-//  uart_Printf(&huart1,loc_buff);
+    UART_PRINTFINTEGER(loc_time_sec,"DEC")
+
 
       
     /*
@@ -146,11 +143,11 @@ void main_draw(void)
   snprintf(loc_buff,sizeof(loc_buff),"%04d",(int)loc_time);
 /*
   ssd1306_SetCursor(2, 0);
-  ssd1306_WriteString("HELLO WORLD!", Font_11x18, White);*/
- // ssd1306_SetCursor(2, 26);
-//  ssd1306_WriteString(loc_buff, Font_11x18, White);
- // ssd1306_Line(30, 30, 100, 30, White);
-  ssd1306_DrawArc(30,30,20,180,White);
+  ssd1306_WriteString("HELLO WORLD!", Font_11x18, White);
+  ssd1306_SetCursor(2, 26);
+  ssd1306_WriteString(loc_buff, Font_11x18, White);
+  ssd1306_Line(30, 30, 100, 30, White);*/
+  ssd1306_DrawArc(30,30,20,360,White);
   
   ssd1306_UpdateScreen();
 
