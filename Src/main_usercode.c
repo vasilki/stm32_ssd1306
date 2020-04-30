@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdio.h>
 //#include "adc.h"
-#include "button_handle.h"
 #include "timers.h"
 #include "uart.h"
 #include "dwt_stm32_delay.h"
@@ -10,7 +9,6 @@
 #include "ssd1306_tests.h"
 
 extern UART_HandleTypeDef huart1; /*declared in main.c*/
-//extern ADC_HandleTypeDef hadc1; /*declared in main.c*/
 extern TIM_HandleTypeDef htim9;
 
 
@@ -23,14 +21,11 @@ static void main_buttons(void);
 
 void main_usercode(void)
 {
-
-  uint8_t loc_buff[20];
   unsigned int loc_time;
   unsigned int loc_time_ms = 0;
   unsigned int loc_time_sec = 0;
   static unsigned int loc_prev_time_ms=0;
   static unsigned int loc_prev_time_sec=0;
-  uint8_t loc_srbyte = 1;
 
   main_Init();
 
@@ -52,8 +47,6 @@ void main_usercode(void)
     /*nothing to do*/
   }
 
-  //loc_adc_val = adc_GetValue(&hadc1);
-
 
   loc_prev_time_sec = loc_time_sec;
   loc_prev_time_ms = loc_time_ms;
@@ -69,10 +62,6 @@ void main_Init(void)
 
   if(loc_B_IsFirstTime == 0)
   {
-    /*BUTTON init*/
-    button_SetActiveButtons('C',13);
-    button_SetActiveButtons('B',6);
-
     /*TIM init*/
     tim_InitTimer(&htim9);
 
@@ -81,7 +70,7 @@ void main_Init(void)
     
     /*UART init*/
     uart_Init(&huart1);
-    uart_PrintfBuildVersion(&huart1);
+    uart_PrintfBuildVersion();
     
     /*OLED SSD1306 init*/
     ssd1306_Init();
@@ -156,18 +145,7 @@ void main_draw(void)
 
 void main_buttons()
 {
-  unsigned char loc_B_button_state = 0;
-  
-  button_Processing();
-  loc_B_button_state = button_GetButtonState('B',6);
-  if(loc_B_button_state != 0)
-  {
-    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_SET);
-  }
-  else
-  {
-    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_RESET);
-  }
+
   
   return;
 }

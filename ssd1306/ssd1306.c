@@ -1,5 +1,6 @@
 #include "ssd1306.h"
 #include <math.h>
+#include <stdlib.h>
 
 #if defined(SSD1306_USE_I2C)
 
