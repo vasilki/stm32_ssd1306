@@ -128,6 +128,14 @@ void main_draw(void)
 {
   uint32_t loc_time;
   char loc_buff[8];
+  SSD1306_VERTEX loc_vertex[4] =
+  {
+      {0,0},
+      {30,30},
+      {30,10},
+      {100,50}
+  };
+
   loc_time = tim_GetTimeFromStartSEC();
   snprintf(loc_buff,sizeof(loc_buff),"%04d",(int)loc_time);
 /*
@@ -136,8 +144,10 @@ void main_draw(void)
   ssd1306_SetCursor(2, 26);
   ssd1306_WriteString(loc_buff, Font_11x18, White);
   ssd1306_Line(30, 30, 100, 30, White);*/
-  ssd1306_DrawArc(30,30,20,360,White);
-  
+ // ssd1306_DrawArc(30,30,20,30,360,White);
+ // ssd1306_DrawCircle(60,30,20,White);
+
+  ssd1306_Polyline(loc_vertex,sizeof(loc_vertex)/sizeof(loc_vertex[0]),White);
   ssd1306_UpdateScreen();
 
   return;
