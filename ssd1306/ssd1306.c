@@ -385,3 +385,31 @@ void ssd1306_DrawCircle(uint8_t x, uint8_t y, uint8_t radius, SSD1306_COLOR colo
   ssd1306_DrawArc(x, y, radius, 0, 360, color);
   return;
 }
+
+
+
+//draw a circle at the specified position on lcd.
+void ssd1306_DrawCircle2(uint16_t hwXpos,  //specify x position.
+                        uint16_t hwYpos,  //specify y position.
+                        uint16_t hwRadius, //specify the radius of the circle.
+                        uint16_t hwColor)  //specify the color of the circle.
+{
+  int x = -hwRadius, y = 0, err = 2 - 2 * hwRadius, e2;
+
+  if (hwXpos >= SSD1306_WIDTH || hwYpos >= SSD1306_HEIGHT) {
+    return;
+  }
+
+    do {
+      ssd1306_DrawPixel(hwXpos - x, hwYpos + y, hwColor);
+      ssd1306_DrawPixel(hwXpos + x, hwYpos + y, hwColor);
+      ssd1306_DrawPixel(hwXpos + x, hwYpos - y, hwColor);
+      ssd1306_DrawPixel(hwXpos - x, hwYpos - y, hwColor);
+        e2 = err;
+        if (e2 <= y) {
+            err += ++ y * 2 + 1;
+            if(-x == y && e2 <= x) e2 = 0;
+        }
+        if(e2 > x) err += ++ x * 2 + 1;
+    } while(x <= 0);
+}

@@ -123,10 +123,14 @@ void main_heartbeat(void)
   return;
 }
 
-
+extern void ssd1306_DrawCircle2(uint16_t hwXpos,  //specify x position.
+    uint16_t hwYpos,  //specify y position.
+    uint16_t hwRadius, //specify the radius of the circle.
+    uint16_t hwColor);  //specify the color of the circle.
 void main_draw(void)
 {
   uint32_t loc_time;
+  uint32_t loc_time_ms;
   char loc_buff[8];
   SSD1306_VERTEX loc_vertex[4] =
   {
@@ -136,8 +140,8 @@ void main_draw(void)
       {100,50}
   };
 
-  loc_time = tim_GetTimeFromStartSEC();
-  snprintf(loc_buff,sizeof(loc_buff),"%04d",(int)loc_time);
+ // loc_time = tim_GetTimeFromStartSEC();
+//  snprintf(loc_buff,sizeof(loc_buff),"%04d",(int)loc_time);
 /*
   ssd1306_SetCursor(2, 0);
   ssd1306_WriteString("HELLO WORLD!", Font_11x18, White);
@@ -145,9 +149,14 @@ void main_draw(void)
   ssd1306_WriteString(loc_buff, Font_11x18, White);
   ssd1306_Line(30, 30, 100, 30, White);*/
  // ssd1306_DrawArc(30,30,20,30,360,White);
- // ssd1306_DrawCircle(60,30,20,White);
 
-  ssd1306_Polyline(loc_vertex,sizeof(loc_vertex)/sizeof(loc_vertex[0]),White);
+  loc_time_ms = tim_GetTimeFromStartMS();
+  //ssd1306_DrawCircle(60,30,20,White);
+  ssd1306_DrawCircle2(60,30,20,White);
+  snprintf(loc_buff,sizeof(loc_buff),"%04d",(int)(tim_GetTimeFromStartMS() - loc_time_ms));
+  ssd1306_SetCursor(2, 26);
+  ssd1306_WriteString(loc_buff, Font_11x18, White);
+ // ssd1306_Polyline(loc_vertex,sizeof(loc_vertex)/sizeof(loc_vertex[0]),White);
   ssd1306_UpdateScreen();
 
   return;
