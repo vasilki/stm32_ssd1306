@@ -40,10 +40,7 @@
 									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
-									<listOptionValue builtIn="false" value="../../stm_mylibs/button"/>
 									<listOptionValue builtIn="false" value="../../stm_mylibs/dwt_stm32_delay"/>
-									<listOptionValue builtIn="false" value="../../stm_mylibs/led"/>
-									<listOptionValue builtIn="false" value="../../stm_mylibs/lcd_1602"/>
 									<listOptionValue builtIn="false" value="../../stm_mylibs/timers"/>
 									<listOptionValue builtIn="false" value="../../stm_mylibs/uart"/>
 									<listOptionValue builtIn="false" value=".././ssd1306"/>
@@ -131,8 +128,24 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.1345944002.589434706" name="/" resourcePath="stm_mylibs/led">
+						<toolChain id="fr.ac6.managedbuild.toolchain.gnu.cross.exe.debug.516626684" name="Ac6 STM32 MCU GCC" superClass="fr.ac6.managedbuild.toolchain.gnu.cross.exe.debug" unusedChildren="">
+							<option id="fr.ac6.managedbuild.option.gnu.cross.prefix.16546129.27429102.1195259338" name="Prefix" superClass="fr.ac6.managedbuild.option.gnu.cross.prefix.16546129.27429102"/>
+							<option id="fr.ac6.managedbuild.option.gnu.cross.mcu.1023657336.1545524484.258610228" name="Mcu" superClass="fr.ac6.managedbuild.option.gnu.cross.mcu.1023657336.1545524484"/>
+							<option id="fr.ac6.managedbuild.option.gnu.cross.board.1655806221.674937666.1178882155" name="Board" superClass="fr.ac6.managedbuild.option.gnu.cross.board.1655806221.674937666"/>
+							<option id="fr.ac6.managedbuild.option.gnu.cross.instructionSet.1017534198.704218947.1642830432" name="Instruction Set" superClass="fr.ac6.managedbuild.option.gnu.cross.instructionSet.1017534198.704218947"/>
+							<option id="fr.ac6.managedbuild.option.gnu.cross.fpu.572863267.2143741538.1751457799" name="Floating point hardware" superClass="fr.ac6.managedbuild.option.gnu.cross.fpu.572863267.2143741538"/>
+							<option id="fr.ac6.managedbuild.option.gnu.cross.floatabi.2055600333.719474924.781565181" name="Floating-point ABI" superClass="fr.ac6.managedbuild.option.gnu.cross.floatabi.2055600333.719474924"/>
+							<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.1349724045" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.299054042"/>
+							<tool id="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.1530830217" name="MCU G++ Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler.1837910868"/>
+							<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.linker.979752617" name="MCU GCC Linker" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.linker.1717817544"/>
+							<tool id="fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.573091056" name="MCU G++ Linker" superClass="fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.805104936"/>
+							<tool id="fr.ac6.managedbuild.tool.gnu.archiver.1764915763" name="MCU GCC Archiver" superClass="fr.ac6.managedbuild.tool.gnu.archiver.907527336"/>
+							<tool id="fr.ac6.managedbuild.tool.gnu.cross.assembler.1880971419" name="MCU GCC Assembler" superClass="fr.ac6.managedbuild.tool.gnu.cross.assembler.1323142023"/>
+						</toolChain>
+					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Drivers|Inc|Src|startup|stm_mylibs" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Inc"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Src"/>
@@ -266,7 +279,7 @@
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Debug">
-			<resource resourceType="PROJECT" workspacePath="stm_ssd1306"/>
+			<resource resourceType="PROJECT" workspacePath="/stm_ssd1306"/>
 		</configuration>
 		<configuration configurationName="Release"/>
 	</storageModule>

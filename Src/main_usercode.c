@@ -123,10 +123,6 @@ void main_heartbeat(void)
   return;
 }
 
-extern void ssd1306_DrawCircle2(uint16_t hwXpos,  //specify x position.
-    uint16_t hwYpos,  //specify y position.
-    uint16_t hwRadius, //specify the radius of the circle.
-    uint16_t hwColor);  //specify the color of the circle.
 void main_draw(void)
 {
   uint32_t loc_time;
@@ -152,10 +148,16 @@ void main_draw(void)
 
   loc_time_ms = tim_GetTimeFromStartMS();
   //ssd1306_DrawCircle(60,30,20,White);
-  ssd1306_DrawCircle2(60,30,20,White);
+  //ssd1306_DrawCircle(60,30,20,White);
+ // ssd1306_TestRectangle();
+  //ssd1306_TestLine();
+  //ssd1306_TestCircle();
+  //ssd1306_TestPolyline();
+  ssd1306_TestAll();
+ // ssd1306_DrawRectangle(20,20,50,70,White);
   snprintf(loc_buff,sizeof(loc_buff),"%04d",(int)(tim_GetTimeFromStartMS() - loc_time_ms));
   ssd1306_SetCursor(2, 26);
-  ssd1306_WriteString(loc_buff, Font_11x18, White);
+  //ssd1306_WriteString(loc_buff, Font_11x18, White);
  // ssd1306_Polyline(loc_vertex,sizeof(loc_vertex)/sizeof(loc_vertex[0]),White);
   ssd1306_UpdateScreen();
 

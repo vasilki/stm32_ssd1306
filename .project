@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>stm_ssd1306</name>
-	<comment />
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -28,7 +28,36 @@
 		<link>
 			<name>stm_mylibs</name>
 			<type>2</type>
-			<location>$%7BPARENT-1-PROJECT_LOC%7D/stm_mylibs</location>
+			<locationURI>$%257BPARENT-1-PROJECT_LOC%257D/stm_mylibs</locationURI>
 		</link>
 	</linkedResources>
+	<filteredResources>
+		<filter>
+			<id>1589049842872</id>
+			<name>stm_mylibs</name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-adc</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1589049842902</id>
+			<name>stm_mylibs</name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-lcd_1602</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1589049842940</id>
+			<name>stm_mylibs</name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-led</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>
