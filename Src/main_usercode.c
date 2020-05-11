@@ -154,6 +154,7 @@ void main_draw(void)
   //ssd1306_TestCircle();
   //ssd1306_TestPolyline();
   ssd1306_TestAll();
+  HAL_Delay(100000);
  // ssd1306_DrawRectangle(20,20,50,70,White);
   snprintf(loc_buff,sizeof(loc_buff),"%04d",(int)(tim_GetTimeFromStartMS() - loc_time_ms));
   ssd1306_SetCursor(2, 26);
